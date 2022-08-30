@@ -15,8 +15,18 @@ public class WelcomeController {
 
 	@RequestMapping("/")
 	public String welcome(Map<String, Object> model) {
-		model.put("message", this.message);
-		return "welcome";
+		//model.put("message", this.message);
+		return "index";
 	}
-
+	@RequestMapping("/login")
+	public String loginPage(Map<String, Object> model) {
+		//model.put("message", this.message);
+		return "login";
+	}
+	@RequestMapping("/signup")
+	public String signupPage(Map<String, Object> model) {
+		//model.put("message", this.message);
+		return "signup";
+	}
+	
 }
