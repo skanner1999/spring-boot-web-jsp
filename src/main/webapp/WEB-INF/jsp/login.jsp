@@ -71,18 +71,18 @@
     <!--start of main-->
     <div class="d-flex justify-content-center mt-5">
         <section className="row justify-content-center">
-            <form className="form-container" action="" th:action="@{/login}" th:object="${login}" method="post">
+            <form className="form-container" action="/login" method="post" modelAttribute="login">
                 <div class="card-body">
                     <h3>Sign in to E-Commerce Tech Store</h3>
                     <h6 className="card-subtitle mb-2 text-muted">Welcome back. Sign in with your account.</h6>
                     <span id="errormessage"></span>
                     <div class="form-group">
                         <label for="userField">Phone Number</label>
-                        <input type="text" class="form-control" id="userField" placeholder="Enter Phone Number" th:field="*{phoneNumber}">
+                        <input type="text" class="form-control" id="userField" placeholder="Enter Phone Number" name="phone_number">
                     </div>
                     <div class="form-group">
                         <label for="passwordField">Password</label>
-                        <input type="password" class="form-control" id="passwordField" placeholder="Enter Password" th:field="*{password}">
+                        <input type="password" class="form-control" id="passwordField" placeholder="Enter Password" name="password">
                     </div>
                     <button type="submit" class="btn btn-primary">Log In</button>
                     <br></br>

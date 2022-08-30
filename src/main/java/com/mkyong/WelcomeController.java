@@ -3,6 +3,7 @@ package com.mkyong;
 import java.sql.SQLException;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +37,6 @@ public class WelcomeController {
 		//model.put("message", this.message);
 		return "index";
 	}
-	@RequestMapping("/login")
-	public String loginPage(Map<String, Object> model) {
-		//model.put("message", this.message);
-		return "login";
-	}
-
-
 
 	@GetMapping("/signup")
 	public ModelAndView getSignup() {
@@ -60,11 +54,28 @@ public class WelcomeController {
 								@RequestParam("password")String password) {
 		ModelAndView SignupPage = new ModelAndView("signup");
 		String hashed_password = BCrypt.hashpw(password, BCrypt.gensalt());
-		customers.sighUp(phone_number, first_name, last_name, hashed_password);
-		return SignupPage;
-								
-	
+		customers.signUp(phone_number, first_name, last_name, hashed_password);
+		return SignupPage;						
 	}
 
-	
+	@GetMapping("/login")
+	public ModelAndView getLogin() {
+		ModelAndView getLoginPage = new ModelAndView("login");
+		getLoginPage.addObject("PageTitle", "Login");
+		return getLoginPage;
+	}
+
+	@PostMapping("/login")
+	public String Login(@RequestParam("phone_number") String phone_number,
+						@RequestParam("password")String password,
+						Model model, HttpSession session) {
+		String getPhoneInDb = customers.getPhone(phone_number);
+		String getPasswordInDB = customers.getPassword(getPhoneInDb);
+		if (!BCrypt.checkpw(password, getPasswordInDB)) {
+			return "login";
+		} 
+		String getAll = customers.getUser(phone_number);
+			session.setAttribute("user", getAll);
+			return "index";
+	}
 }

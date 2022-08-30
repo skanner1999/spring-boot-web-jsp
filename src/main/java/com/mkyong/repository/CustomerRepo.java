@@ -13,13 +13,26 @@ import com.mkyong.models.Signup;
 @Repository
 public interface CustomerRepo extends CrudRepository<Signup, Integer>{
 
+    @Query(value = "SELECT phone_number FROM eCommerceDB.customers WHERE phone_number = :phone_number;", nativeQuery = true)
+    String getPhone(@Param("phone_number")String phone_number);
+
+    @Query(value = "SELECT password FROM eCommerceDB.customers WHERE phone_number = :phone_number;", nativeQuery = true)
+    String getPassword(@Param("phone_number")String phone_number);
+
+    @Query(value = "SELECT * FROM eCommerceDB.customers WHERE phone_number = :phone_number;", nativeQuery = true)
+    String getUser(@Param("phone_number")String phone_number);
+
     @Modifying
     @Query(value = "INSERT INTO eCommerceDB.customers (phone_number,first_name,last_name, password) VALUES (:phone_number, :first_name, :last_name, :password);", nativeQuery = true)
+    
     @Transactional
-    void sighUp(@Param("phone_number")String phone_number,
+    void signUp(@Param("phone_number")String phone_number,
                 @Param("first_name")String first_name,
                 @Param("last_name")String last_name,
                 @Param("password")String password);
-
     
 }
+
+
+
+
