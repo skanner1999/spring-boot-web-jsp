@@ -4,10 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Signup {
+public class customer {
 	@Id
     private String phone_number;
-    public String first_name;
+    private String first_name;
 	private String last_name;
     private String password;
 
@@ -30,7 +30,7 @@ public class Signup {
 		return last_name;
 	}
 
-	public void setLastName(String lastName) {
+	public void setLastName(String last_name) {
 		this.last_name = last_name;
 	}
     public String getPassword() {

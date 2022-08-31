@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix = "fn" uri = "http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <html xmlns:th="https://www.thymeleaf.org">
@@ -61,7 +65,7 @@
                     <!--<li class=\"nav-item\"><a class=\"nav-link\" href=\"profile.php\">$accountUsername</a></li> -->
                     <!--<li class=\"nav-item\"><a class=\"nav-link\" href=\"logout.php\">Log out</a></li>-->
                     <li class="nav-item"><a class="nav-link" href="signup">Sign up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup">Log In</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login">Log In</a></li>
                 </ul>
                 </a>
             </div>
@@ -71,7 +75,7 @@
     <!--start of main-->
     <div class="d-flex justify-content-center mt-5">
         <section className="row justify-content-center">
-            <form className="form-container" action="/login" method="post" modelAttribute="login">
+            <form className="form-container" action="/login" method="post">
                 <div class="card-body">
                     <h3>Sign in to E-Commerce Tech Store</h3>
                     <h6 className="card-subtitle mb-2 text-muted">Welcome back. Sign in with your account.</h6>
@@ -84,7 +88,7 @@
                         <label for="passwordField">Password</label>
                         <input type="password" class="form-control" id="passwordField" placeholder="Enter Password" name="password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Log In</button>
+                    <input type="submit" class="btn btn-primary">Log In</input>
                     <br></br>
                     <Link to="/SignUp">Not a member? Sign up today!</Link>
                 </div>
